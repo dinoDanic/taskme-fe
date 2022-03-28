@@ -6,9 +6,9 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
-  const { data, loading } = useQuery(GET_PROJECTS);
-  if (loading) return "loading";
-  console.log(data);
+  // const { data, loading } = useQuery(GET_PROJECTS);
+  // if (loading) return "loading";
+  // console.log(data);
 
   return (
     <>
@@ -16,5 +16,11 @@ const Home = () => {
     </>
   );
 };
-
+export function getStaticProps() {
+  return {
+    props: {
+      protected: true,
+    },
+  };
+}
 export default Home;

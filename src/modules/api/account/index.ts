@@ -8,6 +8,14 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const CURRENT_USER = gql`
+  query {
+    currentUser {
+      email
+    }
+  }
+`;
+
 export const GET_PROJECTS = gql`
   query {
     getProjects {

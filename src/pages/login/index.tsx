@@ -1,6 +1,6 @@
 import { useLazyQuery } from "@apollo/client";
 import { LOGIN_USER } from "modules/api";
-import { routes } from "modules/api/routes";
+import { routes } from "modules/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
