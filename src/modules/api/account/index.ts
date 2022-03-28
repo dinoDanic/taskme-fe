@@ -9,7 +9,9 @@ export const LOGIN_USER = gql`
 `;
 
 export const GET_PROJECTS = gql`
-  query getProjects {
-    name
+  query {
+    getProjects {
+      name
+    }
   }
 `;
