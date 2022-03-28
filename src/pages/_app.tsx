@@ -9,8 +9,9 @@ import { setContext } from "@apollo/client/link/context";
 import { Provider } from "react-redux";
 import { store } from "redux/store";
 import { ThemeProvider } from "styled-components";
-import { lightTheme } from "styles/theme";
-import GlobalStyle from "styles/global";
+import { MainContainer } from "components/pages";
+import GlobalStyle from "styles/theme/global";
+import { lightTheme } from "styles/theme/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const httpLink = createHttpLink({
@@ -37,7 +38,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ApolloProvider client={client}>
         <ThemeProvider theme={lightTheme}>
           <GlobalStyle />
-          <Component {...pageProps} />
+          <MainContainer>
+            <Component {...pageProps} />
+          </MainContainer>
         </ThemeProvider>
       </ApolloProvider>
     </Provider>
