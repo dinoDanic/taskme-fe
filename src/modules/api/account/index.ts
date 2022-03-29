@@ -15,11 +15,3 @@ export const CURRENT_USER = gql`
     }
   }
 `;
-
-export const GET_PROJECTS = gql`
-  query {
-    getProjects {
-      name
-    }
-  }
-`;

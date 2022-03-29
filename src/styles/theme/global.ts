@@ -1,11 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  html,
-  body {
+  * {
     padding: 0;
     margin: 0;
-    font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    font-smooth: always;
   }
 
   a {
@@ -13,9 +18,13 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  * {
-    box-sizing: border-box;
+  h1 {
+    font-weight: 400;
   }
+  h4 {
+    color: #333;
+  }
+
 
 `;
 export default GlobalStyle;

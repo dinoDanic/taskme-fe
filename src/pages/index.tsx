@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { MyProjects } from "components/pages";
 import { GET_PROJECTS } from "modules/api";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -12,7 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>My projects</h1>
+      <MyProjects />
     </>
   );
 };
