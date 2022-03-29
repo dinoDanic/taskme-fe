@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ControlsReducer from "redux/controls/slice";
 import UserReducer from "redux/user/slice";
+import ProjectReducer from "redux/projects/slice";
 
 export const store = configureStore({
   reducer: {
     controls: ControlsReducer,
     user: UserReducer,
+    projects: ProjectReducer,
   },
 });
 

@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { Project } from "generated/graphql";
 
 export const GET_PROJECTS = gql`
   query {
@@ -7,6 +6,17 @@ export const GET_PROJECTS = gql`
       id
       name
       description
+      visibility
+    }
+  }
+`;
+
+export const CREATE_PROJECT = gql`
+  mutation createProject($input: CreateProjectInput!) {
+    createProject(input: $input) {
+      description
+      id
+      name
       visibility
     }
   }
