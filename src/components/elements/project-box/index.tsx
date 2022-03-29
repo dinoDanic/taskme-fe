@@ -4,10 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "components/ui";
 import { ProjectType } from "types/projects";
+import { routes } from "modules/routes";
+import Link from "next/link";
 
 interface Props extends ProjectType {}
 
-export const ProjectBox: React.FC<Props> = ({ name, description }) => {
+export const ProjectBox: React.FC<Props> = ({ name, description, id }) => {
   const [isSettings, setIsSettings] = useState(false);
   const SettingsAni = {
     animate: {
@@ -18,6 +20,9 @@ export const ProjectBox: React.FC<Props> = ({ name, description }) => {
     },
   };
   const BoxAni = {
+    initial: {
+      width: "100%",
+    },
     animate: {
       width: isSettings ? "60%" : "100%",
       borderRadius: isSettings ? "20px 0 0 20px" : "20px",
@@ -38,7 +43,9 @@ export const ProjectBox: React.FC<Props> = ({ name, description }) => {
         </Header>
         <Footer>
           <NewTask>
-            <Button variant="secondary">Open</Button>
+            <Link href={`${routes.projects}/${id}`} passHref>
+              <Button variant="secondary">Open</Button>
+            </Link>
           </NewTask>
         </Footer>
       </Box>

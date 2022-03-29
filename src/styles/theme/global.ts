@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     background-color: #f7f7f7;
     font-smooth: always;
+    color: #333;
   }
 
   a {
@@ -19,12 +20,17 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 1.5rem;
   }
   h4 {
-    color: #333;
   }
-
+  h5 {
+    font-weight: 400;
+  }
+  textarea { 
+    font-family: 'Roboto', sans-serif;
+  }
 
 `;
 export default GlobalStyle;

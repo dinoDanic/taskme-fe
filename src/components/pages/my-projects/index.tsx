@@ -3,6 +3,8 @@ import { ProjectBox } from "components/elements";
 import { Button } from "components/ui";
 import { Project } from "generated/graphql";
 import { GET_PROJECTS } from "modules/api";
+import { routes } from "modules/routes";
+import Link from "next/link";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -18,7 +20,14 @@ export const MyProjects: React.FC = () => {
   });
 
   const showProjects = projects?.map((p) => {
-    return <ProjectBox key={p.id} name={p.name} description={p.description} />;
+    return (
+      <ProjectBox
+        key={p.id}
+        name={p.name}
+        description={p.description}
+        id={p.id}
+      />
+    );
   });
 
   if (loading) return <div>loading</div>;
@@ -27,7 +36,9 @@ export const MyProjects: React.FC = () => {
     <>
       <Container>
         <Title>My Projects</Title>
-        <Button>New Project</Button>
+        <Link passHref href={routes.newProjects}>
+          <Button variant="gray">New Project</Button>
+        </Link>
       </Container>
       {showProjects}
     </>
@@ -40,4 +51,4 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 20px;
 `;
-const Title = styled.h2``;
+const Title = styled.h1``;
