@@ -7,6 +7,7 @@ export interface colorsI {
   quinary: string;
   quinaryDark: string;
   quinaryLight: string;
+  quinaryMedium: string;
 }
 
 export const colors: colorsI = {
@@ -18,4 +19,5 @@ export const colors: colorsI = {
   quinary: "#F3F4F6",
   quinaryLight: "#f7f7f7",
   quinaryDark: "#989B9E",
+  quinaryMedium: "#dadada",
 };

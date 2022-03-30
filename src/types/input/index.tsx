@@ -4,5 +4,5 @@ export interface SelectOption {
 }
 export interface IButton {
   width: string | undefined;
-  variant?: "gray";
+  variant?: "gray" | "small";
 }

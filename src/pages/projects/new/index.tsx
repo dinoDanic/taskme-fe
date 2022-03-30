@@ -7,8 +7,15 @@ import {
   Mutation,
   MutationCreateProjectArgs,
 } from "generated/graphql";
+import { useAppDispatch } from "hooks";
+import { addProject } from "redux/projects";
+import { useRouter } from "next/router";
+import { routes } from "modules/routes";
 
 const NewProject = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const [project, setProject] = useState<CreateProjectInput>({
     name: "",
     description: "",
@@ -25,6 +32,10 @@ const NewProject = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const response = await createProject();
+    if (response.data?.createProject) {
+      dispatch(addProject(response.data.createProject));
+    }
+    router.push(routes.home);
   };
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {

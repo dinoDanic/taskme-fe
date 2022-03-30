@@ -1,15 +1,11 @@
 import React from "react";
-import styled, {
-  css,
-  DefaultTheme,
-  ThemedStyledInterface,
-} from "styled-components";
+import styled, { css } from "styled-components";
 import { IButton } from "types";
 
 interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   children: React.ReactChild | string | undefined;
   width?: string;
-  variant?: "gray";
+  variant?: "gray" | "small";
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -48,8 +44,16 @@ const grayStyle = css`
   color: ${({ theme }) => theme.colors.quinaryDark};
 `;
 
+const smallStyle = css`
+  padding-top: ${({ theme }) => theme.sizes.padding.sm};
+  padding-bottom: ${({ theme }) => theme.sizes.padding.sm};
+  padding-left: ${({ theme }) => theme.sizes.padding.sm};
+  padding-right: ${({ theme }) => theme.sizes.padding.sm};
+`;
+
 const ButtonStyle = styled.button<IButton>`
   ${defaultStyle};
   ${({ width }) => width && addWidth(width)};
   ${({ variant }) => variant === "gray" && grayStyle};
+  ${({ variant }) => variant === "small" && smallStyle};
 `;

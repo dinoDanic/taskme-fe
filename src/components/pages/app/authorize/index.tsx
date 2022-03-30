@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { setUserData } from "redux/user";
 import styled from "styled-components";
 import { device, size } from "styles/theme/screenSizes";
+import { Sidebar } from "../sidebar";
 
 type AuthorizeProps = {
   children: React.ReactNode;
@@ -39,7 +40,10 @@ export const Authorize: React.FC<AuthorizeProps> = ({
   }
   return (
     <Container>
-      <Middle>{children}</Middle>
+      <Sidebar />
+      <MiddleContainer>
+        <Middle>{children}</Middle>
+      </MiddleContainer>
     </Container>
   );
 };
@@ -49,14 +53,17 @@ const Container = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-content: center;
+`;
+
+const MiddleContainer = styled.div`
+  display: flex;
   align-items: center;
+  flex-direction: column;
+  flex: 1;
 `;
 
 const Middle = styled.div`
   padding: ${({ theme }) => theme.sizes.padding.xl};
-  flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;

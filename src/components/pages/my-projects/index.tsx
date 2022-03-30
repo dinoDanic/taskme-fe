@@ -18,6 +18,7 @@ export const MyProjects: React.FC = () => {
       setProjects(getProjects);
       dispatch(setProjects(getProjects));
     },
+    fetchPolicy: "no-cache",
   });
 
   const showProjects = projects.myProjects.map((p) => {
@@ -36,12 +37,12 @@ export const MyProjects: React.FC = () => {
   return (
     <>
       <Container>
-        <Title>My Projects</Title>
+        <Title style={{ margin: 0 }}>My Projects</Title>
         <Link passHref href={routes.newProjects}>
           <Button variant="gray">New Project</Button>
         </Link>
       </Container>
-      {showProjects}
+      {/* <Projects>{showProjects}</Projects> */}
     </>
   );
 };
@@ -51,4 +52,10 @@ const Container = styled.div`
   gap: 20px;
   align-items: center;
   margin-bottom: 20px;
+`;
+
+const Projects = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.sizes.margin.lg};
 `;

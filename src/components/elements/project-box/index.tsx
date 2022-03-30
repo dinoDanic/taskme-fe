@@ -25,7 +25,7 @@ export const ProjectBox: React.FC<Props> = ({ name, description, id }) => {
     },
     animate: {
       width: isSettings ? "60%" : "100%",
-      borderRadius: isSettings ? "20px 0 0 20px" : "20px",
+      borderRadius: isSettings ? "10px 0 0 10px" : "10px",
       transition: {
         duration: 0.2,
       },
@@ -44,7 +44,7 @@ export const ProjectBox: React.FC<Props> = ({ name, description, id }) => {
         <Footer>
           <NewTask>
             <Link href={`${routes.projects}/${id}`} passHref>
-              <Button variant="secondary">Open</Button>
+              <Button variant="small">Open</Button>
             </Link>
           </NewTask>
         </Footer>
@@ -60,8 +60,8 @@ export const ProjectBox: React.FC<Props> = ({ name, description, id }) => {
 };
 const Container = styled.div`
   position: relative;
-  width: 360px;
-  min-height: 200px;
+  width: 300px;
+  /* min-height: 100px; */
 `;
 
 const SettingsIcon = styled.div`
@@ -86,20 +86,22 @@ const SettingsBox = styled(motion.div)`
 `;
 
 const Box = styled(motion.div)`
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: 100%;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 25px;
-  /* box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px; */
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   transition: 0.2s ease all;
   z-index: 10;
+  border: 1px solid transparent;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 0px;
+    border: 1px solid ${({ theme }) => theme.colors.quinary};
   }
   &:hover ${SettingsIcon} {
     opacity: 0.1;
@@ -108,14 +110,20 @@ const Box = styled(motion.div)`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.sizes.margin.md};
 `;
 
 const Footer = styled.div``;
 
 const Name = styled.h4``;
 
-const Description = styled.p``;
+const Description = styled.p`
+  border-left: 1px solid ${({ theme }) => theme.colors.quinaryDark};
+  padding-left: ${({ theme }) => theme.sizes.padding.md};
+  color: ${({ theme }) => theme.colors.quinaryDark};
+  font-size: 0.9rem;
+`;
 
 const NewTask = styled.div`
   display: flex;

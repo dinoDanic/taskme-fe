@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Title: React.FC = ({ children }) => {
-  return <TitleStyled>{children}</TitleStyled>;
+interface Props {
+  style?: React.CSSProperties;
+}
+
+export const Title: React.FC<Props> = ({ children, ...other }) => {
+  return <TitleStyled {...other}>{children}</TitleStyled>;
 };
 
 const TitleStyled = styled.h1`

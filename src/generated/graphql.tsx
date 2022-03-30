@@ -84,6 +84,7 @@ export type User = {
   __typename?: 'User';
   email: Scalars['String'];
   id: Scalars['ID'];
+  name: Scalars['String'];
   role: Scalars['String'];
 };
 
