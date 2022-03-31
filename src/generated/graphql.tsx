@@ -60,10 +60,16 @@ export type Project = {
 export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
+  getProjectById?: Maybe<Project>;
   getProjects?: Maybe<Array<Project>>;
   /** Login a user */
   login?: Maybe<Scalars['String']>;
   logout: Scalars['Boolean'];
+};
+
+
+export type QueryGetProjectByIdArgs = {
+  id: Scalars['ID'];
 };
 
 

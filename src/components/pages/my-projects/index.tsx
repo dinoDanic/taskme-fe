@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { ProjectBox } from "components/elements";
-import { Button, Title } from "components/ui";
+import { Button, H1 } from "components/ui";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECTS } from "modules/api";
 import { routes } from "modules/routes";
@@ -37,9 +37,11 @@ export const MyProjects: React.FC = () => {
   return (
     <>
       <Container>
-        <Title style={{ margin: 0 }}>My Projects</Title>
+        <H1 style={{ margin: 0 }}>My Projects</H1>
         <Link passHref href={routes.newProjects}>
-          <Button variant="gray">New Project</Button>
+          <a>
+            <Button variant="gray">New Project</Button>
+          </a>
         </Link>
       </Container>
       {/* <Projects>{showProjects}</Projects> */}

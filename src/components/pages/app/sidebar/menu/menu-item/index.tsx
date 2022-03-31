@@ -22,7 +22,6 @@ export const MenuItem: React.FC<menuType> = ({ Icon, name, link }) => {
   ));
 
   const fetchLinks = async () => {
-    setActive(!active);
     switch (name) {
       case "Projects":
         const response = await fetchProjects();
@@ -38,7 +37,7 @@ export const MenuItem: React.FC<menuType> = ({ Icon, name, link }) => {
     <Container active={active} onClick={fetchLinks}>
       <Icon />
       <Content>
-        <Name>{name}</Name>
+        <Name onClick={() => setActive(!active)}>{name}</Name>
         {active && name === "Projects" && mapProjects}
       </Content>
     </Container>
@@ -66,4 +65,6 @@ const Container = styled.div<StyleProps>`
 
 const Name = styled.div``;
 
-const Content = styled.div``;
+const Content = styled.div`
+  width: 100%;
+`;

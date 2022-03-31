@@ -11,6 +11,17 @@ export const GET_PROJECTS = gql`
   }
 `;
 
+export const GET_PROJECT_BY_ID = gql`
+  query getProjectById($id: ID!) {
+    getProjectById(id: $id) {
+      description
+      id
+      name
+      visibility
+    }
+  }
+`;
+
 export const CREATE_PROJECT = gql`
   mutation createProject($input: CreateProjectInput!) {
     createProject(input: $input) {

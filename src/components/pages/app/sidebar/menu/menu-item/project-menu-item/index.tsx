@@ -1,12 +1,38 @@
 import { Project } from "generated/graphql";
-import React from "react";
-import styled from "styled-components";
+import { routes } from "modules/routes";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 
-export const ProjectMenuItem: React.FC<Project> = ({ name }) => {
-  return <Container>{name}</Container>;
+export const ProjectMenuItem: React.FC<Project> = ({ name, id }) => {
+  const router = useRouter();
+  const idPath = router.asPath.split("/")[2];
+  const active = idPath === id;
+
+  return (
+    <Link href={`${routes.projects}/${id}`} passHref>
+      <Container active={active}>{name}</Container>
+    </Link>
+  );
 };
 
-const Container = styled.div`
-  margin-top: ${({ theme }) => theme.sizes.margin.md};
-  margin-bottom: ${({ theme }) => theme.sizes.margin.md};
+interface StyleProps {
+  active: boolean;
+}
+
+const activeStyle = css`
+  background-color: ${({ theme }) => theme.colors.quinaryMedium};
+`;
+
+const Container = styled.div<StyleProps>`
+  margin-top: ${({ theme }) => theme.sizes.margin.xs};
+  margin-bottom: ${({ theme }) => theme.sizes.margin.xs};
+  padding: ${({ theme }) => theme.sizes.padding.sm};
+  border-radius: ${({ theme }) => theme.borders.xs};
+  transition: 0.2s ease all;
+  ${({ active }) => active && activeStyle};
+  &:hover {
+    ${activeStyle}
+  }
 `;

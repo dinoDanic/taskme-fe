@@ -10,7 +10,6 @@ import { device, size } from "styles/theme/screenSizes";
 import { Sidebar } from "../sidebar";
 
 type AuthorizeProps = {
-  children: React.ReactNode;
   pageProps: any;
 };
 

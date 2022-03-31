@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Button, Form, Input, Textarea, Title } from "components/ui";
+import { Button, Form, Input, Textarea, H1 } from "components/ui";
 import { CREATE_PROJECT } from "modules/api";
 import {
   CreateProjectInput,
@@ -54,7 +54,7 @@ const NewProject = () => {
 
   return (
     <>
-      <Title>New Project</Title>
+      <H1>New Project</H1>
       <Form onSubmit={handleSubmit}>
         <Input
           placeholder="Rendom Project"
