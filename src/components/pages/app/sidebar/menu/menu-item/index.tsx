@@ -38,6 +38,7 @@ export const MenuItem: React.FC<menuType> = ({ Icon, name, link }) => {
       <Icon />
       <Content>
         <Name onClick={() => setActive(!active)}>{name}</Name>
+
         {active && name === "Projects" && mapProjects}
       </Content>
     </Container>

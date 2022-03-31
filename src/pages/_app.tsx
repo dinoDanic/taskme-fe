@@ -12,6 +12,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/theme/global";
 import { lightTheme } from "styles/theme/theme";
 import { Authorize } from "components/pages";
+import { NewTask } from "components/elements";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
@@ -41,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Authorize pageProps={pageProps}>
             <Component {...pageProps} />
           </Authorize>
+          <NewTask />
         </ThemeProvider>
       </ApolloProvider>
     </Provider>

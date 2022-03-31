@@ -22,13 +22,13 @@ interface StyleProps {
 }
 
 const activeStyle = css`
-  background-color: ${({ theme }) => theme.colors.quinaryMedium};
+  background-color: ${({ theme }) => theme.colors.success};
 `;
 
 const Container = styled.div<StyleProps>`
   margin-top: ${({ theme }) => theme.sizes.margin.xs};
   margin-bottom: ${({ theme }) => theme.sizes.margin.xs};
-  padding: ${({ theme }) => theme.sizes.padding.sm};
+  padding: ${({ theme }) => theme.sizes.padding.md};
   border-radius: ${({ theme }) => theme.borders.xs};
   transition: 0.2s ease all;
   ${({ active }) => active && activeStyle};

@@ -2,13 +2,16 @@ import { useQuery } from "@apollo/client";
 import { Box } from "components/elements";
 import { Button, H1, H2, H3, H4 } from "components/ui";
 import { QueryGetProjectByIdArgs, Query } from "generated/graphql";
+import { useAppDispatch } from "hooks";
 import { GET_PROJECT_BY_ID } from "modules/api";
 import { useRouter } from "next/router";
 import React from "react";
+import { setBodyZoom } from "redux/controls";
 import styled from "styled-components";
 
 const ProjectID = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const pid = router.asPath.split("/")[2];
 
   const { data } = useQuery<Query, QueryGetProjectByIdArgs>(GET_PROJECT_BY_ID, {
@@ -16,6 +19,10 @@ const ProjectID = () => {
       id: pid,
     },
   });
+
+  const handleNewTask = () => {
+    dispatch(setBodyZoom());
+  };
 
   return (
     <>
@@ -35,7 +42,7 @@ const ProjectID = () => {
           <H4>Notes</H4>
         </Box>
       </Information>
-      <Button variant="gray" width="100px">
+      <Button variant="gray" width="100px" onClick={handleNewTask}>
         New Task
       </Button>
     </>

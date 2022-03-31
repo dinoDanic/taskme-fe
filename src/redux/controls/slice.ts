@@ -1,15 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ControlsState {}
+interface ControlsState {
+  bodyZoom: boolean;
+}
 
-const initialState: ControlsState = {};
+const initialState: ControlsState = {
+  bodyZoom: false,
+};
 
 export const countrolsSlice = createSlice({
   name: "controls",
   initialState,
-  reducers: {},
+  reducers: {
+    setBodyZoom(state) {
+      state.bodyZoom = !state.bodyZoom;
+    },
+  },
 });
 
-// export const {} = countrolsSlice.actions;
+export const { setBodyZoom } = countrolsSlice.actions;
 
 export default countrolsSlice.reducer;

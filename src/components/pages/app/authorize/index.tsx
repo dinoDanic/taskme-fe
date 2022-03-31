@@ -1,13 +1,14 @@
 import { useQuery } from "@apollo/client";
-import { useAppDispatch } from "hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { CURRENT_USER } from "modules/api";
 import { routes } from "modules/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { controlsSelector } from "redux/controls";
 import { setUserData } from "redux/user";
-import styled from "styled-components";
-import { device, size } from "styles/theme/screenSizes";
+import { defaulAnimationProps } from "types";
 import { Sidebar } from "../sidebar";
+import { Container, MiddleContainer, Middle, zoomOn, zoomOff } from "./styles";
 
 type AuthorizeProps = {
   pageProps: any;
@@ -19,6 +20,7 @@ export const Authorize: React.FC<AuthorizeProps> = ({
 }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const controls = useAppSelector(controlsSelector);
 
   const [user, setUser] = useState();
 
@@ -38,7 +40,10 @@ export const Authorize: React.FC<AuthorizeProps> = ({
     return <>loading...</>;
   }
   return (
-    <Container>
+    <Container
+      variants={controls.bodyZoom ? zoomOn : zoomOff}
+      {...defaulAnimationProps}
+    >
       <Sidebar />
       <MiddleContainer>
         <Middle>{children}</Middle>
@@ -46,27 +51,3 @@ export const Authorize: React.FC<AuthorizeProps> = ({
     </Container>
   );
 };
-
-const Container = styled.div`
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-`;
-
-const MiddleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-`;
-
-const Middle = styled.div`
-  padding: ${({ theme }) => theme.sizes.padding.xl};
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  ${device.deksop} {
-    width: ${size.desktop};
-  }
-`;
