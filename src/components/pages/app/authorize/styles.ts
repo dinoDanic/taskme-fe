@@ -27,7 +27,7 @@ export const Middle = styled.div`
 `;
 
 export const zoomOn = {
-  animate: { scale: 0.87 },
+  animate: { scale: 0.9 },
 };
 
 export const zoomOff = {

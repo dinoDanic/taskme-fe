@@ -22,7 +22,7 @@ interface StyleProps {
 }
 
 const activeStyle = css`
-  background-color: ${({ theme }) => theme.colors.success};
+  background-color: ${({ theme }) => theme.colors.quinaryMedium};
 `;
 
 const Container = styled.div<StyleProps>`
