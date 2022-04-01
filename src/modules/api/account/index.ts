@@ -17,3 +17,14 @@ export const CURRENT_USER = gql`
     }
   }
 `;
+
+export const GET_ALL_USERS = gql`
+  query {
+    getAllUsers {
+      id
+      name
+      email
+      role
+    }
+  }
+`;

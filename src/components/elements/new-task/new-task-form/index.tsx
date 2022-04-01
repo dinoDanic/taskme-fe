@@ -1,15 +1,65 @@
+import { useMutation, useQuery } from "@apollo/client";
 import { Button, Form, Input, Textarea } from "components/ui";
-import React from "react";
+import {
+  Mutation,
+  MutationCreateTaskArgs,
+  Query,
+  User,
+} from "generated/graphql";
+import { useAppSelector } from "hooks";
+import { GET_ALL_USERS } from "modules/api";
+import { CREATE_TASK } from "modules/api/tasks";
+import { useRouter } from "next/router";
+import React, { FormEvent, useState } from "react";
+import { userSelector } from "redux/user";
 import styled from "styled-components";
+import { SelectUser } from "./select-user";
 
 export const NewTaskForm = () => {
+  const { asPath } = useRouter();
+  const currentUser = useAppSelector(userSelector);
+  const { loading, data } = useQuery<Query>(GET_ALL_USERS);
+  const [createTaskMutation] = useMutation<Mutation, MutationCreateTaskArgs>(
+    CREATE_TASK
+  );
+
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [taskName, setTaskName] = useState("");
+  const projectIdUrl = asPath.split("/")[2];
+
+  if (loading) return <>loading...</>;
+
+  const createTask = async (e: FormEvent) => {
+    e.preventDefault();
+    const response = await createTaskMutation({
+      variables: {
+        input: {
+          name: taskName,
+          assigneeId: selectedUser?.id || "",
+          parentId: "",
+          projectId: projectIdUrl,
+        },
+      },
+    });
+    console.log(response);
+  };
   return (
-    <Form>
-      <Input label="Name your task" placeholder="Task name" />
+    <Form onSubmit={createTask}>
+      <Input
+        required
+        label="Name your task"
+        placeholder="Task name"
+        onChange={(e) => setTaskName(e.target.value)}
+      />
       <Textarea label="Description" placeholder="Add description" />
-      <Input label="Assign" placeholder="Assign people" />
-      <Input type="date" label="Deadline" />
-      <Input label="Priority" />
+      <SelectUser
+        setSelectedUser={setSelectedUser}
+        selectedUser={selectedUser}
+        label="Assign"
+        list={data?.getAllUsers!}
+      />
+      {/* <Input type="date" label="Deadline" /> */}
+      {/* <Input label="Priority" /> */}
       <Save>
         <Button>Create</Button>
       </Save>

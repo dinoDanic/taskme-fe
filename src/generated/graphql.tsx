@@ -60,6 +60,7 @@ export type Project = {
 export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
+  getAllUsers?: Maybe<Array<User>>;
   getProjectById?: Maybe<Project>;
   getProjects?: Maybe<Array<Project>>;
   /** Login a user */
@@ -91,7 +92,7 @@ export type User = {
   email: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
-  role: Scalars['String'];
+  role?: Maybe<Scalars['String']>;
 };
 
 export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
