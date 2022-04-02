@@ -38,8 +38,7 @@ export const MenuItem: React.FC<menuType> = ({ Icon, name, link }) => {
       <Icon />
       <Content>
         <Name onClick={() => setActive(!active)}>{name}</Name>
-
-        {active && name === "Projects" && mapProjects}
+        {active && name === "Projects" && <Links>{mapProjects}</Links>}
       </Content>
     </Container>
   );
@@ -68,4 +67,9 @@ const Name = styled.div``;
 
 const Content = styled.div`
   width: 100%;
+`;
+
+const Links = styled.div`
+  padding-top: ${({ theme }) => theme.sizes.margin.sm};
+  padding-bottom: ${({ theme }) => theme.sizes.margin.sm};
 `;

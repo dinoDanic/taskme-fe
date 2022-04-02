@@ -3,10 +3,15 @@ import { ProjectType } from "types";
 
 interface StateType {
   myProjects: ProjectType[];
+  projectById: ProjectType;
 }
 
 const initialState: StateType = {
   myProjects: [],
+  projectById: {
+    id: "",
+    name: "",
+  },
 };
 
 export const projectSlice = createSlice({
@@ -19,9 +24,12 @@ export const projectSlice = createSlice({
     addProject(state, action) {
       state.myProjects.push(action.payload);
     },
+    setProjectById(state, action) {
+      state.projectById = action.payload;
+    },
   },
 });
 
-export const { setProjects, addProject } = projectSlice.actions;
+export const { setProjects, addProject, setProjectById } = projectSlice.actions;
 
 export default projectSlice.reducer;

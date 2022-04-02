@@ -10,7 +10,6 @@ export const H4: React.FC<Props> = ({ children, ...other }) => {
 };
 
 const H4Styled = styled.h2`
-  margin-bottom: ${({ theme }) => theme.sizes.margin.lg};
   font-size: 0.7rem;
   text-transform: uppercase;
   font-weight: normal;

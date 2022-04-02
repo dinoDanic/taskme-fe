@@ -42,6 +42,8 @@ const defaultStyle = css`
 const grayStyle = css`
   background-color: ${({ theme }) => theme.colors.quinary};
   color: ${({ theme }) => theme.colors.quinaryDark};
+  padding-top: ${({ theme }) => theme.sizes.padding.sm};
+  padding-bottom: ${({ theme }) => theme.sizes.padding.sm};
 `;
 
 const smallStyle = css`

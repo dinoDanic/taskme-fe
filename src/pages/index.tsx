@@ -1,4 +1,4 @@
-import { MyProjects } from "components/pages";
+import { MyProjects } from "components/pages/projects";
 
 const Home = () => {
   return (

@@ -10,7 +10,7 @@ export const H3: React.FC<Props> = ({ children, ...other }) => {
 };
 
 const H3Styled = styled.h2`
-  margin-bottom: ${({ theme }) => theme.sizes.margin.lg};
   font-size: 1rem;
   font-weight: normal;
+  margin-bottom: ${({ theme }) => theme.sizes.margin.sm};
 `;

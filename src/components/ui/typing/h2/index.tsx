@@ -10,6 +10,5 @@ export const H2: React.FC<Props> = ({ children, ...other }) => {
 };
 
 const H2Styled = styled.h2`
-  margin-bottom: ${({ theme }) => theme.sizes.margin.lg};
   font-size: 1.3rem;
 `;

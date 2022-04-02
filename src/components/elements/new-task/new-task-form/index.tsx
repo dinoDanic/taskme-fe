@@ -6,18 +6,19 @@ import {
   Query,
   User,
 } from "generated/graphql";
-import { useAppSelector } from "hooks";
+import { useAppDispatch } from "hooks";
 import { GET_ALL_USERS } from "modules/api";
 import { CREATE_TASK } from "modules/api/tasks";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { userSelector } from "redux/user";
+import { setBodyZoom } from "redux/controls";
+import { addTaskToProjectTasks } from "redux/tasks";
 import styled from "styled-components";
 import { SelectUser } from "./select-user";
 
 export const NewTaskForm = () => {
+  const dispatch = useAppDispatch();
   const { asPath } = useRouter();
-  const currentUser = useAppSelector(userSelector);
   const { loading, data } = useQuery<Query>(GET_ALL_USERS);
   const [createTaskMutation] = useMutation<Mutation, MutationCreateTaskArgs>(
     CREATE_TASK
@@ -41,7 +42,10 @@ export const NewTaskForm = () => {
         },
       },
     });
-    console.log(response);
+    if (response.data?.createTask) {
+      dispatch(setBodyZoom());
+      dispatch(addTaskToProjectTasks(response.data.createTask));
+    }
   };
   return (
     <Form onSubmit={createTask}>
@@ -58,8 +62,6 @@ export const NewTaskForm = () => {
         label="Assign"
         list={data?.getAllUsers!}
       />
-      {/* <Input type="date" label="Deadline" /> */}
-      {/* <Input label="Priority" /> */}
       <Save>
         <Button>Create</Button>
       </Save>
