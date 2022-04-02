@@ -30,6 +30,7 @@ export type CreateTaskInput = {
   clientMutationId?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   parentId: Scalars['ID'];
+  priority: PriorityEnum;
   projectId: Scalars['ID'];
 };
 
@@ -48,6 +49,13 @@ export type MutationCreateProjectArgs = {
 export type MutationCreateTaskArgs = {
   input: CreateTaskInput;
 };
+
+export enum PriorityEnum {
+  High = 'high',
+  Low = 'low',
+  None = 'none',
+  Urgent = 'urgent'
+}
 
 export type Project = {
   __typename?: 'Project';
@@ -90,6 +98,7 @@ export type Task = {
   assigneeId?: Maybe<Scalars['ID']>;
   id: Scalars['ID'];
   name: Scalars['String'];
+  priority: PriorityEnum;
   projectId: Scalars['ID'];
 };
 

@@ -45,7 +45,7 @@ export const MenuItem: React.FC<menuType> = ({ Icon, name, link }) => {
 };
 
 const activeStyle = css`
-  border: 1px solid ${({ theme }) => theme.colors.quinaryMedium};
+  /* border: 1px solid ${({ theme }) => theme.colors.quinaryMedium}; */
   opacity: 1;
 `;
 

@@ -35,7 +35,7 @@ export const MyTasks = () => {
   return (
     <Container>
       <Header>
-        <H1 style={{ margin: 0 }}>MyTasks</H1>
+        <H1 style={{ margin: 0 }}>Tasks</H1>
         <Button variant="gray" onClick={handleNewTask}>
           New Task
         </Button>

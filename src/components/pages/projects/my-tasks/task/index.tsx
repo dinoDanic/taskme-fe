@@ -3,11 +3,11 @@ import { Task } from "generated/graphql";
 import React from "react";
 import styled from "styled-components";
 
-export const SingleTask: React.FC<Task> = ({ name, id, assigneeId }) => {
+export const SingleTask: React.FC<Task> = ({ name, priority, assigneeId }) => {
   return (
     <Container>
       <PrioHold>
-        <Priority status="high" />
+        <Priority status={priority} />
       </PrioHold>
       <Name>{name}</Name>
     </Container>

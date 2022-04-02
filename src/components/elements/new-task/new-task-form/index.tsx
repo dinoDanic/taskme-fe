@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Form, Input, Textarea } from "components/ui";
+import { Button, Form, Input, Label, Textarea } from "components/ui";
 import {
   Mutation,
   MutationCreateTaskArgs,
+  PriorityEnum,
   Query,
   User,
 } from "generated/graphql";
@@ -14,6 +15,7 @@ import React, { FormEvent, useState } from "react";
 import { setBodyZoom } from "redux/controls";
 import { addTaskToProjectTasks } from "redux/tasks";
 import styled from "styled-components";
+import { Priority } from "./priority";
 import { SelectUser } from "./select-user";
 
 export const NewTaskForm = () => {
@@ -25,6 +27,7 @@ export const NewTaskForm = () => {
   );
 
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [priority, setPriority] = useState<PriorityEnum>(PriorityEnum.Low);
   const [taskName, setTaskName] = useState("");
   const projectIdUrl = asPath.split("/")[2];
 
@@ -39,6 +42,7 @@ export const NewTaskForm = () => {
           assigneeId: selectedUser?.id || "",
           parentId: "",
           projectId: projectIdUrl,
+          priority: priority,
         },
       },
     });
@@ -48,7 +52,7 @@ export const NewTaskForm = () => {
     }
   };
   return (
-    <Form onSubmit={createTask}>
+    <Form onSubmit={createTask} style={{ position: "relative" }}>
       <Input
         required
         label="Name your task"
@@ -62,6 +66,7 @@ export const NewTaskForm = () => {
         label="Assign"
         list={data?.getAllUsers!}
       />
+      <Priority state={priority} setState={setPriority} />
       <Save>
         <Button>Create</Button>
       </Save>

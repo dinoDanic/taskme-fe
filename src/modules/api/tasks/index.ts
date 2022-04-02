@@ -7,6 +7,7 @@ export const CREATE_TASK = gql`
       id
       name
       projectId
+      priority
     }
   }
 `;
@@ -18,6 +19,7 @@ export const GET_PROJECT_TASKS = gql`
       assigneeId
       name
       projectId
+      priority
     }
   }
 `;

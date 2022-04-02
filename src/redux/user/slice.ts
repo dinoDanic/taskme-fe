@@ -1,11 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "generated/graphql";
 
-const initialState: User = {
-  email: "",
-  id: "",
-  role: "",
-  name: "",
+interface StateType {
+  currentUser: User;
+  allUsers: User[];
+}
+
+const initialState: StateType = {
+  currentUser: {
+    email: "",
+    id: "",
+    role: "",
+    name: "",
+  },
+  allUsers: [],
 };
 
 export const userSlice = createSlice({
@@ -13,14 +21,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUserData(state, action) {
-      state.email = action.payload.email;
-      state.id = action.payload.id;
-      state.role = action.payload.role;
-      state.name = action.payload.name;
+      state.currentUser.email = action.payload.email;
+      state.currentUser.id = action.payload.id;
+      state.currentUser.role = action.payload.role;
+      state.currentUser.name = action.payload.name;
+    },
+    setAllUsers(state, action) {
+      state.allUsers = action.payload;
     },
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, setAllUsers } = userSlice.actions;
 
 export default userSlice.reducer;
