@@ -1,14 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { Button, H1, H2, Suspenser } from "components/ui";
+import { Button, H2, Suspenser } from "components/ui";
 import { Query, QueryGetProjectTasksArgs } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECT_TASKS } from "modules/api/tasks";
 import { useRouter } from "next/router";
-import React from "react";
-import { setBodyZoom } from "redux/controls";
+import { setNewTaskZoom } from "redux/controls";
 import { projectTasksSelector, setProjectTasks } from "redux/tasks";
-import styled, { ThemeConsumer } from "styled-components";
 import { SingleTask } from "./task";
+import styled from "styled-components";
 
 export const MyTasks = () => {
   const router = useRouter();
@@ -32,7 +31,7 @@ export const MyTasks = () => {
   ));
 
   const handleNewTask = () => {
-    dispatch(setBodyZoom());
+    dispatch(setNewTaskZoom(true));
   };
 
   return (

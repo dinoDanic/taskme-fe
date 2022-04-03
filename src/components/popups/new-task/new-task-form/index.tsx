@@ -12,7 +12,7 @@ import { GET_ALL_USERS } from "modules/api";
 import { CREATE_TASK } from "modules/api/tasks";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { setBodyZoom } from "redux/controls";
+import { setNewTaskZoom } from "redux/controls";
 import { addTaskToProjectTasks } from "redux/tasks";
 import styled from "styled-components";
 import { Priority } from "./priority";
@@ -49,7 +49,7 @@ export const NewTaskForm = () => {
       },
     });
     if (response.data?.createTask) {
-      dispatch(setBodyZoom());
+      dispatch(setNewTaskZoom(false));
       dispatch(addTaskToProjectTasks(response.data.createTask));
     }
   };

@@ -50,7 +50,7 @@ export const Authorize: React.FC<AuthorizeProps> = ({
   }
   return (
     <Container
-      variants={controls.bodyZoom ? zoomOn : zoomOff}
+      variants={controls.zoom.body ? zoomOn : zoomOff}
       {...defaulAnimationProps}
     >
       <Sidebar />

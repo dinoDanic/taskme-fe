@@ -1,62 +1,53 @@
 import { useQuery } from "@apollo/client";
 import { ProjectBox } from "components/elements";
-import { Button, H1 } from "components/ui";
+import { Button, H2 } from "components/ui";
+import { Query } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECTS } from "modules/api";
-import { routes } from "modules/routes";
+import React from "react";
+import { setNewProjectZoom } from "redux/controls";
 import { projectSelector, setProjects } from "redux/projects";
 import styled from "styled-components";
-import Link from "next/link";
 
 export const MyProjects: React.FC = () => {
   const dispatch = useAppDispatch();
   const projects = useAppSelector(projectSelector);
 
-  const { loading } = useQuery(GET_PROJECTS, {
+  useQuery<Query>(GET_PROJECTS, {
     onCompleted: (data) => {
       const { getProjects } = data;
-      setProjects(getProjects);
       dispatch(setProjects(getProjects));
     },
   });
 
-  const showProjects = projects.myProjects.map((p) => {
-    return (
-      <ProjectBox
-        key={p.id}
-        name={p.name}
-        description={p.description}
-        id={p.id}
-      />
-    );
-  });
+  const handleNewProject = () => {
+    dispatch(setNewProjectZoom(true));
+  };
 
-  if (loading) return <>loading...</>;
+  const mapProjects = projects.myProjects.map((p) => (
+    <ProjectBox key={p.id} {...p} />
+  ));
 
   return (
     <>
       <Container>
-        <H1 style={{ margin: 0 }}>My Projects</H1>
-        <Link passHref href={routes.newProject}>
-          <a>
-            <Button variant="gray">New Project</Button>
-          </a>
-        </Link>
+        <Name>My Projects</Name>
+        <Button onClick={handleNewProject} variant="gray">
+          New Project
+        </Button>
       </Container>
-      {/* <Projects>{showProjects}</Projects> */}
+      {mapProjects}
     </>
   );
 };
 
 const Container = styled.div`
   display: flex;
-  gap: 20px;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: ${({ theme }) => theme.sizes.margin.lg};
 `;
 
-const Projects = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.sizes.margin.lg};
+const Name = styled(H2)`
+  margin: 0;
+  margin-right: ${({ theme }) => theme.sizes.margin.sm};
 `;
