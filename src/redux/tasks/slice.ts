@@ -1,12 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Task } from "generated/graphql";
+import { PriorityEnum, Task } from "generated/graphql";
 
 interface StateType {
   projectTasks: Task[];
+  task: Task;
 }
 
 const initialState: StateType = {
   projectTasks: [],
+  task: {
+    id: "",
+    name: "",
+    priority: PriorityEnum.None,
+    projectId: "",
+  },
 };
 
 export const taskSlice = createSlice({
@@ -19,9 +26,13 @@ export const taskSlice = createSlice({
     addTaskToProjectTasks(state, action) {
       state.projectTasks.push(action.payload);
     },
+    setTask(state, action) {
+      state.task = action.payload;
+    },
   },
 });
 
-export const { setProjectTasks, addTaskToProjectTasks } = taskSlice.actions;
+export const { setTask, setProjectTasks, addTaskToProjectTasks } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;

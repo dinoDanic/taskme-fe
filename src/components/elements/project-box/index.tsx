@@ -43,7 +43,7 @@ export const ProjectBox: React.FC<Props> = ({ name, description, id }) => {
         </Header>
         <Footer>
           <NewTask>
-            <Link href={`${routes.projects}/${id}`} passHref>
+            <Link href={`${routes.project}/${id}`} passHref>
               <Button variant="small">Open</Button>
             </Link>
           </NewTask>

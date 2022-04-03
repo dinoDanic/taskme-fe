@@ -38,7 +38,7 @@ export const MyProjects: React.FC = () => {
     <>
       <Container>
         <H1 style={{ margin: 0 }}>My Projects</H1>
-        <Link passHref href={routes.newProjects}>
+        <Link passHref href={routes.newProject}>
           <a>
             <Button variant="gray">New Project</Button>
           </a>

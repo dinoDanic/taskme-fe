@@ -11,7 +11,7 @@ export const ProjectMenuItem: React.FC<Project> = ({ name, id }) => {
   const active = idPath === id;
 
   return (
-    <Link href={`${routes.projects}/${id}`} passHref>
+    <Link href={`${routes.project}/${id}`} passHref>
       <Container active={active}>{name}</Container>
     </Link>
   );

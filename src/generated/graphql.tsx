@@ -72,6 +72,7 @@ export type Query = {
   getProjectById?: Maybe<Project>;
   getProjectTasks?: Maybe<Array<Task>>;
   getProjects?: Maybe<Array<Project>>;
+  getTaskById: Task;
   /** Login a user */
   login?: Maybe<Scalars['String']>;
   logout: Scalars['Boolean'];
@@ -84,6 +85,11 @@ export type QueryGetProjectByIdArgs = {
 
 
 export type QueryGetProjectTasksArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetTaskByIdArgs = {
   id: Scalars['ID'];
 };
 

@@ -11,7 +11,7 @@ export const menuItems: menuType[] = [
   {
     id: 0,
     name: "Projects",
-    link: routes.projects,
+    link: routes.project,
     Icon: BsFolder2Open,
   },
   {

@@ -1,6 +1,7 @@
 export const routes = {
   home: "/",
   login: "/login",
-  projects: "/projects",
-  newProjects: "/projects/new",
+  project: "/project",
+  task: "/project/[:id]/task",
+  newProject: "/project/new",
 };
