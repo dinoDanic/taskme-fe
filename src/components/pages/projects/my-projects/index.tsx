@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { ProjectBox } from "components/elements";
-import { Button, H2 } from "components/ui";
+import { Button, H2, Suspenser } from "components/ui";
 import { Query } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECTS } from "modules/api";
@@ -13,7 +13,7 @@ export const MyProjects: React.FC = () => {
   const dispatch = useAppDispatch();
   const projects = useAppSelector(projectSelector);
 
-  useQuery<Query>(GET_PROJECTS, {
+  const { loading } = useQuery<Query>(GET_PROJECTS, {
     onCompleted: (data) => {
       const { getProjects } = data;
       dispatch(setProjects(getProjects));
@@ -29,15 +29,15 @@ export const MyProjects: React.FC = () => {
   ));
 
   return (
-    <>
+    <Suspenser loading={loading} type="home">
       <Container>
         <Name>My Projects</Name>
         <Button onClick={handleNewProject} variant="gray">
           New Project
         </Button>
       </Container>
-      {mapProjects}
-    </>
+      <Projects>{mapProjects}</Projects>
+    </Suspenser>
   );
 };
 
@@ -50,4 +50,10 @@ const Container = styled.div`
 const Name = styled(H2)`
   margin: 0;
   margin-right: ${({ theme }) => theme.sizes.margin.sm};
+`;
+
+const Projects = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.sizes.margin.md};
+  flex-wrap: wrap;
 `;

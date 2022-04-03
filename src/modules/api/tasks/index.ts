@@ -38,3 +38,16 @@ export const GET_TASK_BY_ID = gql`
     }
   }
 `;
+
+export const GET_TASK_BY_PARENT_AND_PROJECT = gql`
+  query getTaskByParentAndProject($parentId: ID!, $projectId: ID!) {
+    getTaskByParentAndProject(parentId: $parentId, projectId: $projectId) {
+      assigneeId
+      description
+      id
+      name
+      priority
+      projectId
+    }
+  }
+`;

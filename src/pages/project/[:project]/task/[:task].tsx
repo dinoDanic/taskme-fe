@@ -1,14 +1,6 @@
 import { useQuery } from "@apollo/client";
-import {
-  Button,
-  H1,
-  H2,
-  H3,
-  H5,
-  HeaderPage,
-  LabelBadge,
-  Suspenser,
-} from "components/ui";
+import { MySubtasks } from "components/pages";
+import { H1, H3, H5, HeaderPage, LabelBadge, Suspenser } from "components/ui";
 import { Query, QueryGetTaskByIdArgs, Task } from "generated/graphql";
 import { useAppSelector } from "hooks";
 import { GET_TASK_BY_ID } from "modules/api/tasks";
@@ -21,6 +13,7 @@ import styled from "styled-components";
 const CurrentTask: NextPage = () => {
   const router = useRouter();
   const allUsers = useAppSelector(allUsersSelector);
+
   const [task, setTask] = useState<Task | undefined>();
   const assignedUser = allUsers.find((u) => u.id === task?.assigneeId);
 
@@ -38,9 +31,7 @@ const CurrentTask: NextPage = () => {
       <Container>
         <HeaderPage>
           <H1>{task?.name}</H1>
-          <Description>
-            <H3>{task?.description}</H3>
-          </Description>
+          <H3>{task?.description}</H3>
         </HeaderPage>
         <Content>
           <Row>
@@ -56,10 +47,7 @@ const CurrentTask: NextPage = () => {
             <LabelBadge>24.03.2022.</LabelBadge>
           </Row>
         </Content>
-        <Tasks>
-          <H2 style={{ margin: 0 }}>Subtasks</H2>
-          <Button variant="gray">Add Subtask</Button>
-        </Tasks>
+        <MySubtasks />
       </Container>
     </Suspenser>
   );
@@ -71,10 +59,6 @@ const Container = styled.div``;
 
 const Content = styled.div`
   margin-bottom: ${({ theme }) => theme.sizes.margin.xl};
-`;
-
-const Description = styled.div`
-  min-height: 30px;
 `;
 
 const Row = styled.div`
@@ -89,8 +73,4 @@ const LabelText = styled(H5)`
   min-width: 85px;
 `;
 
-const Tasks = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.sizes.margin.md};
-`;
+const Tasks = styled.div``;

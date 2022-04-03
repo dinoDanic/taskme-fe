@@ -4,10 +4,12 @@ import { PriorityEnum, Task } from "generated/graphql";
 interface StateType {
   projectTasks: Task[];
   task: Task;
+  subtasks: Task[];
 }
 
 const initialState: StateType = {
   projectTasks: [],
+  subtasks: [],
   task: {
     id: "",
     name: "",
@@ -29,10 +31,13 @@ export const taskSlice = createSlice({
     setTask(state, action) {
       state.task = action.payload;
     },
+    setSubtasks(state, action) {
+      state.subtasks = action.payload;
+    },
   },
 });
 
-export const { setTask, setProjectTasks, addTaskToProjectTasks } =
+export const { setTask, setSubtasks, setProjectTasks, addTaskToProjectTasks } =
   taskSlice.actions;
 
 export default taskSlice.reducer;

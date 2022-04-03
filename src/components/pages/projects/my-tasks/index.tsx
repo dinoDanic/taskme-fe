@@ -6,7 +6,7 @@ import { GET_PROJECT_TASKS } from "modules/api/tasks";
 import { useRouter } from "next/router";
 import { setNewTaskZoom } from "redux/controls";
 import { projectTasksSelector, setProjectTasks } from "redux/tasks";
-import { SingleTask } from "./task";
+import { SingleTask } from "../single-task";
 import styled from "styled-components";
 
 export const MyTasks = () => {
@@ -31,7 +31,7 @@ export const MyTasks = () => {
   ));
 
   const handleNewTask = () => {
-    dispatch(setNewTaskZoom(true));
+    dispatch(setNewTaskZoom({ state: true, parentId: "" }));
   };
 
   return (

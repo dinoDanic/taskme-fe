@@ -7,12 +7,12 @@ import {
   Query,
   User,
 } from "generated/graphql";
-import { useAppDispatch } from "hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_ALL_USERS } from "modules/api";
 import { CREATE_TASK } from "modules/api/tasks";
 import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
-import { setNewTaskZoom } from "redux/controls";
+import { controlsSelector, setNewTaskZoom } from "redux/controls";
 import { addTaskToProjectTasks } from "redux/tasks";
 import styled from "styled-components";
 import { Priority } from "./priority";
@@ -21,6 +21,9 @@ import { SelectUser } from "./select-user";
 export const NewTaskForm = () => {
   const dispatch = useAppDispatch();
   const { asPath } = useRouter();
+
+  const controls = useAppSelector(controlsSelector);
+
   const { loading, data } = useQuery<Query>(GET_ALL_USERS);
   const [createTaskMutation] = useMutation<Mutation, MutationCreateTaskArgs>(
     CREATE_TASK
@@ -41,7 +44,7 @@ export const NewTaskForm = () => {
         input: {
           name: taskName,
           assigneeId: selectedUser?.id || "",
-          parentId: "",
+          parentId: controls.newTaskConfig.parentId,
           projectId: projectIdUrl,
           priority: priority,
           description: taskDescription,
@@ -49,7 +52,7 @@ export const NewTaskForm = () => {
       },
     });
     if (response.data?.createTask) {
-      dispatch(setNewTaskZoom(false));
+      dispatch(setNewTaskZoom({ state: false, parentId: "" }));
       dispatch(addTaskToProjectTasks(response.data.createTask));
     }
   };

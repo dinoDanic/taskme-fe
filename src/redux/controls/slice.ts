@@ -6,6 +6,9 @@ interface ControlsState {
     newTask: boolean;
     newProject: boolean;
   };
+  newTaskConfig: {
+    parentId: string;
+  };
 }
 
 const initialState: ControlsState = {
@@ -14,6 +17,9 @@ const initialState: ControlsState = {
     newTask: false,
     newProject: false,
   },
+  newTaskConfig: {
+    parentId: "",
+  },
 };
 
 export const countrolsSlice = createSlice({
@@ -21,8 +27,9 @@ export const countrolsSlice = createSlice({
   initialState,
   reducers: {
     setNewTaskZoom(state, action) {
-      state.zoom.newTask = action.payload;
-      state.zoom.body = action.payload;
+      state.zoom.newTask = action.payload.state;
+      state.zoom.body = action.payload.state;
+      state.newTaskConfig.parentId = action.payload.parentId;
     },
     setNewProjectZoom(state, action) {
       state.zoom.newProject = action.payload;
@@ -33,10 +40,17 @@ export const countrolsSlice = createSlice({
       state.zoom.newTask = false;
       state.zoom.newProject = false;
     },
+    setNewTaskConfig(state, action) {
+      state.newTaskConfig = action.payload;
+    },
   },
 });
 
-export const { setNewTaskZoom, setNewProjectZoom, setZoomFalse } =
-  countrolsSlice.actions;
+export const {
+  setNewTaskZoom,
+  setNewProjectZoom,
+  setZoomFalse,
+  setNewTaskConfig,
+} = countrolsSlice.actions;
 
 export default countrolsSlice.reducer;
