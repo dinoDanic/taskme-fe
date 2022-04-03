@@ -10,4 +10,5 @@ const Container = styled.div`
   max-width: 400px;
   padding: ${({ theme }) => theme.sizes.padding.md};
   border-radius: ${({ theme }) => theme.borders.sm};
+  min-height: 80px;
 `;

@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Button, H1 } from "components/ui";
+import { Button, H1, Suspenser } from "components/ui";
 import { Query, QueryGetProjectTasksArgs } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECT_TASKS } from "modules/api/tasks";
@@ -17,12 +17,15 @@ export const MyTasks = () => {
   const dispatch = useAppDispatch();
   const projectTasks = useAppSelector(projectTasksSelector);
 
-  useQuery<Query, QueryGetProjectTasksArgs>(GET_PROJECT_TASKS, {
-    variables: { id: pid },
-    onCompleted: (data) => {
-      dispatch(setProjectTasks(data.getProjectTasks));
-    },
-  });
+  const { loading } = useQuery<Query, QueryGetProjectTasksArgs>(
+    GET_PROJECT_TASKS,
+    {
+      variables: { id: pid },
+      onCompleted: (data) => {
+        dispatch(setProjectTasks(data.getProjectTasks));
+      },
+    }
+  );
 
   const mapTasks = projectTasks.map((task) => (
     <SingleTask key={task.id} {...task} />
@@ -33,15 +36,17 @@ export const MyTasks = () => {
   };
 
   return (
-    <Container>
-      <Header>
-        <H1 style={{ margin: 0 }}>Tasks</H1>
-        <Button variant="gray" onClick={handleNewTask}>
-          New Task
-        </Button>
-      </Header>
-      {mapTasks}
-    </Container>
+    <Suspenser loading={loading} type="tasks">
+      <Container>
+        <Header>
+          <H1 style={{ margin: 0 }}>Tasks</H1>
+          <Button variant="gray" onClick={handleNewTask}>
+            New Task
+          </Button>
+        </Header>
+        {mapTasks}
+      </Container>
+    </Suspenser>
   );
 };
 

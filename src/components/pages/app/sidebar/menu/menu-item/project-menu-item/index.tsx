@@ -26,9 +26,7 @@ const activeStyle = css`
 `;
 
 const Container = styled.div<StyleProps>`
-  /* margin-top: ${({ theme }) => theme.sizes.margin.xs}; */
   margin-bottom: ${({ theme }) => theme.sizes.margin.xs};
-  /* padding: ${({ theme }) => theme.sizes.padding.xs}; */
   border-radius: ${({ theme }) => theme.borders.xs};
   transition: 0.2s ease all;
   ${({ active }) => active && activeStyle};
