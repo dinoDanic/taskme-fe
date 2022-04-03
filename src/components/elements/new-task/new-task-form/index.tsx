@@ -29,6 +29,7 @@ export const NewTaskForm = () => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [priority, setPriority] = useState<PriorityEnum>(PriorityEnum.Low);
   const [taskName, setTaskName] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
   const projectIdUrl = asPath.split("/")[2];
 
   if (loading) return <>loading...</>;
@@ -43,6 +44,7 @@ export const NewTaskForm = () => {
           parentId: "",
           projectId: projectIdUrl,
           priority: priority,
+          description: taskDescription,
         },
       },
     });
@@ -59,7 +61,11 @@ export const NewTaskForm = () => {
         placeholder="Task name"
         onChange={(e) => setTaskName(e.target.value)}
       />
-      <Textarea label="Description" placeholder="Add description" />
+      <Textarea
+        label="Description"
+        placeholder="Add description"
+        onChange={(e) => setTaskDescription(e.target.value)}
+      />
       <SelectUser
         setSelectedUser={setSelectedUser}
         selectedUser={selectedUser}

@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Box } from "components/elements";
 import { MyTasks } from "components/pages";
-import { Button, H1, H2, H3, H4, Suspenser } from "components/ui";
+import { H1, H3, H4, HeaderPage, Suspenser } from "components/ui";
 import { QueryGetProjectByIdArgs, Query } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECT_BY_ID } from "modules/api";
@@ -32,8 +32,11 @@ const ProjectID = () => {
   return (
     <>
       <Suspenser loading={loading} type="project">
-        <H1>{project.name}</H1>
-        <H3>{project.description}</H3>
+        <HeaderPage>
+          <H1>{project.name}</H1>
+          <H3>{project.description}</H3>
+        </HeaderPage>
+
         <Information>
           <Box>
             <H4>latest Tasks</H4>

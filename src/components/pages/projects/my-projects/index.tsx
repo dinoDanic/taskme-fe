@@ -18,7 +18,6 @@ export const MyProjects: React.FC = () => {
       setProjects(getProjects);
       dispatch(setProjects(getProjects));
     },
-    fetchPolicy: "no-cache",
   });
 
   const showProjects = projects.myProjects.map((p) => {

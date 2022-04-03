@@ -1,6 +1,4 @@
-import { useAppSelector } from "hooks";
 import React from "react";
-import { userSelector } from "redux/user";
 import styled from "styled-components";
 import { Menu } from "./menu";
 import { User } from "./user";

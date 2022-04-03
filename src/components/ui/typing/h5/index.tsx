@@ -5,12 +5,12 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-export const H2: React.FC<Props> = ({ children, ...other }) => {
-  return <H2Styled {...other}>{children}</H2Styled>;
+export const H5: React.FC<Props> = ({ children, ...other }) => {
+  return <H5Styled {...other}>{children}</H5Styled>;
 };
 
-const H2Styled = styled.h2`
-  font-size: 1.3rem;
+const H5Styled = styled.h5`
+  font-size: 0.9rem;
   font-weight: normal;
   margin-bottom: ${({ theme }) => theme.sizes.margin.md};
 `;

@@ -5,13 +5,13 @@ import { Skeleton } from "../skeleton";
 export const ProjectSkeleton = () => {
   return (
     <>
-      <Skeleton width="150px" marginBottom="15px" />
-      <Skeleton width="100px" height="20px" marginBottom="10px" />
+      <Skeleton width="150px" marginBottom="10px" />
+      <Skeleton width="100px" height="20px" marginBottom="40px" />
       <Flex>
-        <Skeleton width="220px" height="70px" />
-        <Skeleton width="220px" height="70px" />
-        <Skeleton width="220px" height="70px" />
-        <Skeleton width="220px" height="70px" />
+        <Skeleton width="220px" height="80px" />
+        <Skeleton width="220px" height="80px" />
+        <Skeleton width="220px" height="80px" />
+        <Skeleton width="220px" height="80px" />
       </Flex>
     </>
   );
@@ -20,7 +20,7 @@ export const ProjectSkeleton = () => {
 const Flex = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.sizes.margin.md};
-  margin-bottom: ${({ theme }) => theme.sizes.margin.md};
+  margin-bottom: 17px;
   div {
     flex: 1;
   }

@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Button, H1, Suspenser } from "components/ui";
+import { Button, H1, H2, Suspenser } from "components/ui";
 import { Query, QueryGetProjectTasksArgs } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECT_TASKS } from "modules/api/tasks";
@@ -39,7 +39,7 @@ export const MyTasks = () => {
     <Suspenser loading={loading} type="tasks">
       <Container>
         <Header>
-          <H1 style={{ margin: 0 }}>Tasks</H1>
+          <H2 style={{ margin: 0 }}>Tasks</H2>
           <Button variant="gray" onClick={handleNewTask}>
             New Task
           </Button>

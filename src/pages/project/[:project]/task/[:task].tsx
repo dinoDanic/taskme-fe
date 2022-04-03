@@ -1,35 +1,96 @@
 import { useQuery } from "@apollo/client";
-import { H1 } from "components/ui";
-import { Query, QueryGetTaskByIdArgs } from "generated/graphql";
+import {
+  Button,
+  H1,
+  H2,
+  H3,
+  H5,
+  HeaderPage,
+  LabelBadge,
+  Suspenser,
+} from "components/ui";
+import { Query, QueryGetTaskByIdArgs, Task } from "generated/graphql";
+import { useAppSelector } from "hooks";
 import { GET_TASK_BY_ID } from "modules/api/tasks";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
+import { allUsersSelector } from "redux/user";
 import styled from "styled-components";
 
-const Task: NextPage = () => {
+const CurrentTask: NextPage = () => {
   const router = useRouter();
+  const allUsers = useAppSelector(allUsersSelector);
+  const [task, setTask] = useState<Task | undefined>();
+  const assignedUser = allUsers.find((u) => u.id === task?.assigneeId);
 
   const tid = router.asPath.split("/")[4];
 
-  const { data, loading } = useQuery<Query, QueryGetTaskByIdArgs>(
-    GET_TASK_BY_ID,
-    {
-      variables: {
-        id: tid,
-      },
-    }
-  );
-
-  if (loading) return <>loading..</>;
+  const { loading } = useQuery<Query, QueryGetTaskByIdArgs>(GET_TASK_BY_ID, {
+    variables: {
+      id: tid,
+    },
+    onCompleted: (data) => setTask(data.getTaskById),
+  });
 
   return (
-    <Container>
-      <H1>{data?.getTaskById.name}</H1>
-    </Container>
+    <Suspenser loading={loading} type="task">
+      <Container>
+        <HeaderPage>
+          <H1>{task?.name}</H1>
+          <Description>
+            <H3>{task?.description}</H3>
+          </Description>
+        </HeaderPage>
+        <Content>
+          <Row>
+            <LabelText>Priority:</LabelText>
+            <LabelBadge type={task?.priority}>{task?.priority}</LabelBadge>
+          </Row>
+          <Row>
+            <LabelText>Assigneed:</LabelText>
+            <LabelBadge>{assignedUser?.name}</LabelBadge>
+          </Row>
+          <Row>
+            <LabelText>Deadline:</LabelText>
+            <LabelBadge>24.03.2022.</LabelBadge>
+          </Row>
+        </Content>
+        <Tasks>
+          <H2 style={{ margin: 0 }}>Subtasks</H2>
+          <Button variant="gray">Add Subtask</Button>
+        </Tasks>
+      </Container>
+    </Suspenser>
   );
 };
 
-export default Task;
+export default CurrentTask;
 
 const Container = styled.div``;
+
+const Content = styled.div`
+  margin-bottom: ${({ theme }) => theme.sizes.margin.xl};
+`;
+
+const Description = styled.div`
+  min-height: 30px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.sizes.margin.md};
+`;
+
+const LabelText = styled(H5)`
+  margin: 0;
+  margin-right: ${({ theme }) => theme.sizes.margin.md};
+  min-width: 85px;
+`;
+
+const Tasks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.sizes.margin.md};
+`;

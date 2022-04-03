@@ -6,6 +6,7 @@ interface Props {
   height?: string;
   width?: string;
   marginBottom?: string;
+  marginLeft?: string;
 }
 
 export const Skeleton: React.FC<Props> = ({
@@ -13,9 +14,15 @@ export const Skeleton: React.FC<Props> = ({
   height = "30px",
   width = "100%",
   marginBottom = "10px",
+  marginLeft = "0px",
 }) => {
   return (
-    <Container marginBottom={marginBottom} height={height} width={width} />
+    <Container
+      marginBottom={marginBottom}
+      marginLeft={marginLeft}
+      height={height}
+      width={width}
+    />
   );
 };
 
@@ -29,6 +36,7 @@ interface StyleProps {
   height: string;
   width: string;
   marginBottom: string;
+  marginLeft: string;
 }
 
 const Container = styled.div<StyleProps>`
@@ -47,4 +55,5 @@ const Container = styled.div<StyleProps>`
   width: ${({ width }) => width};
   border-radius: 0.4rem;
   margin-bottom: ${({ marginBottom }) => marginBottom};
+  margin-left: ${({ marginLeft }) => marginLeft};
 `;

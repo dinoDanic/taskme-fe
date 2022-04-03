@@ -9,7 +9,9 @@ export interface colorsI {
   success: string;
   successLight: string;
   danger: "#d32f2f";
+  dangerLight: "#ffdfdf";
   warning: "#EDE04C";
+  warningLight: "#fffcdf";
 }
 
 export const colors: colorsI = {
@@ -23,5 +25,7 @@ export const colors: colorsI = {
   success: "#85e7b3",
   successLight: "#f0fff7",
   danger: "#d32f2f",
+  dangerLight: "#ffdfdf",
   warning: "#EDE04C",
+  warningLight: "#fffcdf",
 };

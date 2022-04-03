@@ -8,6 +8,7 @@ export const CREATE_TASK = gql`
       name
       projectId
       priority
+      description
     }
   }
 `;
@@ -20,6 +21,7 @@ export const GET_PROJECT_TASKS = gql`
       name
       projectId
       priority
+      description
     }
   }
 `;
@@ -32,6 +34,7 @@ export const GET_TASK_BY_ID = gql`
       name
       projectId
       priority
+      description
     }
   }
 `;
