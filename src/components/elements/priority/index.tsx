@@ -1,7 +1,5 @@
 import { PriorityEnum } from "generated/graphql";
-import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { PriorityType } from "types/task";
 
 interface Props {
   status: PriorityEnum;

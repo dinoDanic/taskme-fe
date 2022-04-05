@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Button, H2, Suspenser } from "components/ui";
+import { Button, H2, SubHeaderPage, Suspenser } from "components/ui";
 import { Query, QueryGetProjectTasksArgs } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_PROJECT_TASKS } from "modules/api/tasks";
@@ -37,12 +37,12 @@ export const MyTasks = () => {
   return (
     <Suspenser loading={loading} type="tasks">
       <Container>
-        <Header>
+        <SubHeaderPage>
           <H2 style={{ margin: 0 }}>Tasks</H2>
           <Button variant="gray" onClick={handleNewTask}>
             New Task
           </Button>
-        </Header>
+        </SubHeaderPage>
         {mapTasks}
       </Container>
     </Suspenser>
@@ -50,10 +50,3 @@ export const MyTasks = () => {
 };
 
 const Container = styled.div``;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.sizes.margin.md};
-  margin-bottom: ${({ theme }) => theme.sizes.margin.md};
-`;

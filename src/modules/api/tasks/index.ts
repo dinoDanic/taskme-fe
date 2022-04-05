@@ -9,6 +9,21 @@ export const CREATE_TASK = gql`
       projectId
       priority
       description
+      status
+    }
+  }
+`;
+
+export const TOGGLE_TASK_STATUS = gql`
+  mutation toggleTaskStatus($input: ToggleTaskStatusInput!) {
+    toggleTaskStatus(input: $input) {
+      assigneeId
+      id
+      name
+      projectId
+      priority
+      description
+      status
     }
   }
 `;
@@ -22,6 +37,7 @@ export const GET_PROJECT_TASKS = gql`
       projectId
       priority
       description
+      status
     }
   }
 `;
@@ -35,6 +51,7 @@ export const GET_TASK_BY_ID = gql`
       projectId
       priority
       description
+      status
     }
   }
 `;
@@ -48,6 +65,7 @@ export const GET_TASK_BY_PARENT_AND_PROJECT = gql`
       name
       priority
       projectId
+      status
     }
   }
 `;

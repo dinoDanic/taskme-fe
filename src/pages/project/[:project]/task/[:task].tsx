@@ -1,6 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { MySubtasks } from "components/pages";
-import { H1, H3, H5, HeaderPage, LabelBadge, Suspenser } from "components/ui";
+import {
+  Description,
+  H1,
+  H3,
+  H5,
+  HeaderPage,
+  LabelBadge,
+  Suspenser,
+} from "components/ui";
 import { Query, QueryGetTaskByIdArgs, Task } from "generated/graphql";
 import { useAppSelector } from "hooks";
 import { GET_TASK_BY_ID } from "modules/api/tasks";
@@ -31,12 +39,16 @@ const CurrentTask: NextPage = () => {
       <Container>
         <HeaderPage>
           <H1>{task?.name}</H1>
-          <H3>{task?.description}</H3>
+          <Description>{task?.description}</Description>
         </HeaderPage>
         <Content>
           <Row>
             <LabelText>Priority:</LabelText>
             <LabelBadge type={task?.priority}>{task?.priority}</LabelBadge>
+          </Row>
+          <Row>
+            <LabelText>Status:</LabelText>
+            <LabelBadge>{task?.status}</LabelBadge>
           </Row>
           <Row>
             <LabelText>Assigneed:</LabelText>

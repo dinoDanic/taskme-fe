@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PriorityEnum, Task } from "generated/graphql";
+import { PriorityEnum, Task, TaskStatusEnum } from "generated/graphql";
 
 interface StateType {
   projectTasks: Task[];
   task: Task;
+  tasks: Task[];
   subtasks: Task[];
 }
 
 const initialState: StateType = {
   projectTasks: [],
+  tasks: [],
   subtasks: [],
   task: {
+    status: TaskStatusEnum.Open,
     id: "",
     name: "",
     priority: PriorityEnum.None,
@@ -25,6 +28,9 @@ export const taskSlice = createSlice({
     setProjectTasks(state, action) {
       state.projectTasks = action.payload;
     },
+    setTasks(state, action) {
+      state.tasks = action.payload;
+    },
     addTaskToProjectTasks(state, action) {
       state.projectTasks.push(action.payload);
     },
@@ -37,7 +43,12 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { setTask, setSubtasks, setProjectTasks, addTaskToProjectTasks } =
-  taskSlice.actions;
+export const {
+  setTasks,
+  setTask,
+  setSubtasks,
+  setProjectTasks,
+  addTaskToProjectTasks,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;

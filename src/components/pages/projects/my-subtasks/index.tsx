@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Button, H2 } from "components/ui";
+import { Button, H2, HeaderPage, SubHeaderPage } from "components/ui";
 import { Query, QueryGetTaskByParentAndProjectArgs } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { GET_TASK_BY_PARENT_AND_PROJECT } from "modules/api/tasks";
@@ -38,19 +38,13 @@ export const MySubtasks = () => {
 
   return (
     <>
-      <Header>
+      <SubHeaderPage>
         <H2 style={{ margin: 0 }}>Subtasks</H2>
         <Button variant="gray" onClick={AddSubtask}>
           Add Subtask
         </Button>
-      </Header>
+      </SubHeaderPage>
       {subtasksMap}
     </>
   );
 };
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.sizes.margin.md};
-`;

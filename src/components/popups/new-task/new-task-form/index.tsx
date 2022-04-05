@@ -5,6 +5,7 @@ import {
   MutationCreateTaskArgs,
   PriorityEnum,
   Query,
+  TaskStatusEnum,
   User,
 } from "generated/graphql";
 import { useAppDispatch, useAppSelector } from "hooks";
@@ -31,6 +32,7 @@ export const NewTaskForm = () => {
 
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [priority, setPriority] = useState<PriorityEnum>(PriorityEnum.Low);
+  const [status, setStatus] = useState<TaskStatusEnum>(TaskStatusEnum.Open);
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const projectIdUrl = asPath.split("/")[2];
@@ -48,6 +50,7 @@ export const NewTaskForm = () => {
           projectId: projectIdUrl,
           priority: priority,
           description: taskDescription,
+          status: status,
         },
       },
     });

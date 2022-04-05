@@ -6,3 +6,5 @@ export * from "./form";
 export * from "./suspenser";
 export * from "./header-page";
 export * from "./label-badge";
+export * from "./sub-header-page";
+export * from "./checkbox";

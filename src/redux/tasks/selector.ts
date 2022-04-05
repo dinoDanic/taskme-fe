@@ -5,4 +5,6 @@ export const projectTasksSelector = (state: RootState) =>
 
 export const taskSelector = (state: RootState) => state.tasks.task;
 
+export const tasksSelector = (state: RootState) => state.tasks.tasks;
+
 export const subtasksSelector = (state: RootState) => state.tasks.subtasks;
