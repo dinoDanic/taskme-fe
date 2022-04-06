@@ -1,0 +1,16 @@
+query getProjects {
+  getProjects {
+    id
+    name
+    description
+    visibility
+  }
+}
+query getProjectById($id: ID!) {
+  getProjectById(id: $id) {
+    description
+    id
+    name
+    visibility
+  }
+}
