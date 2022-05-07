@@ -14,3 +14,15 @@ query getProjectById($id: ID!) {
     visibility
   }
 }
+
+query getAssignedTasks {
+  getAssignedTasks {
+    assigneeId
+    id
+    name
+    projectId
+    priority
+    description
+    status
+  }
+}
